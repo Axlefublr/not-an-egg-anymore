@@ -28,3 +28,13 @@ impl Polyline {
         &mut self.0
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    #[should_panic]
+    fn panics_if_empty() {
+        Polyline::new(Vec::new());
+    }
+}
