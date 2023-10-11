@@ -1,5 +1,5 @@
 fn main() {
-    println!("Implement me!");
+    let poly = Polyline::new(vec![Point::default(), Point { x: 3, y: 5}]);
 }
 
 #[derive(Clone, Copy, Default)]
