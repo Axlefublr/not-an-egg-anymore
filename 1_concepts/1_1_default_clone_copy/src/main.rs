@@ -20,11 +20,7 @@ impl Polyline {
         }
     }
 
-    pub fn get(&self) -> &Vec<Point> {
-        &self.0
-    }
-
-    pub fn get_mut(&mut self) -> &mut Vec<Point> {
-        &mut self.0
+    pub fn get(&self, index: usize) -> Option<&Point> {
+        self.0.get(index)
     }
 }
