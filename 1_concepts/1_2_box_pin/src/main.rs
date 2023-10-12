@@ -1,5 +1,3 @@
-use std::time;
-
 mod traits;
 mod future;
 
