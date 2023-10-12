@@ -23,4 +23,8 @@ impl Polyline {
     pub fn get(&self, index: usize) -> Option<&Point> {
         self.0.get(index)
     }
+
+    pub fn get_mut(&mut self, index: usize) -> Option<&mut Point> {
+        self.0.get_mut(index)
+    }
 }
