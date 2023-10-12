@@ -1,5 +1,5 @@
 fn main() {
-    let poly = Polyline::new(vec![Point::default(), Point { x: 3, y: 5}]);
+    let poly = Polyline::build(vec![Point::default(), Point { x: 3, y: 5}]).unwrap();
 }
 
 #[derive(Clone, Copy, Default)]
@@ -12,12 +12,12 @@ struct Point {
 struct Polyline(Vec<Point>);
 
 impl Polyline {
-    /// # Panics
-    ///
-    /// If `points` is empty
-    pub fn new(points: Vec<Point>) -> Self {
-        assert!(!points.is_empty());
-        Self(points)
+    pub fn build(points: Vec<Point>) -> Option<Self> {
+        if points.is_empty() {
+            None
+        } else {
+            Some(Self(points))
+        }
     }
 
     pub fn get(&self) -> &Vec<Point> {
@@ -26,15 +26,5 @@ impl Polyline {
 
     pub fn get_mut(&mut self) -> &mut Vec<Point> {
         &mut self.0
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    #[test]
-    #[should_panic]
-    fn panics_if_empty() {
-        Polyline::new(Vec::new());
     }
 }
