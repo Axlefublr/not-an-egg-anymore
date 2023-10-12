@@ -1,5 +1,5 @@
 fn main() {
-    let poly = Polyline::build(vec![Point::default(), Point { x: 3, y: 5}]).unwrap();
+    let poly = Polyline::build(vec![Point::default(), Point { x: 3, y: 5 }]).unwrap();
 }
 
 #[derive(Clone, Copy, Default)]
@@ -12,6 +12,7 @@ struct Point {
 struct Polyline(Vec<Point>);
 
 impl Polyline {
+    /// Returns `None` when `points` is empty
     pub fn build(points: Vec<Point>) -> Option<Self> {
         if points.is_empty() {
             None
