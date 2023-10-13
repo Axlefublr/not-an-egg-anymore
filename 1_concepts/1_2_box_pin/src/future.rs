@@ -1,16 +1,25 @@
+use pin_project::pin_project;
 use std::future::Future;
 use std::pin::Pin;
 use std::task::Context;
 use std::task::Poll;
 use std::time::Duration;
 use std::time::Instant;
-use pin_project::pin_project;
 
 #[pin_project]
-struct MeasurableFuture<Fut: Future> {
+pub struct MeasurableFuture<Fut: Future> {
     #[pin]
     inner_future: Fut,
     started_at: Option<Instant>,
+}
+
+impl<Fut: Future> MeasurableFuture<Fut> {
+    pub fn new(inner_future: Fut) -> Self {
+        Self {
+            inner_future,
+            started_at: None,
+        }
+    }
 }
 
 impl<Fut: Future> Future for MeasurableFuture<Fut> {
