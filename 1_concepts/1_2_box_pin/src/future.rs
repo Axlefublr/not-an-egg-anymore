@@ -4,7 +4,7 @@ use std::task::Context;
 use std::task::Poll;
 use std::time::Instant;
 
-struct MeasurableFuture<Fut> {
+struct MeasurableFuture<Fut: Future> {
     inner_future: Fut,
     started_at: Option<Instant>,
 }
