@@ -32,6 +32,7 @@ impl<T> Wrapper<T> {
 
 impl MutMeSomehow for Wrapper<Calc> {
     fn mut_me_somehow(self: Pin<&mut Self>) {
+        // we mutate the value, but we don't move it
         let this = unsafe { self.get_unchecked_mut() };
         this.0.increment();
     }
