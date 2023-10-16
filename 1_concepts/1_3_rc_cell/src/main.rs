@@ -8,7 +8,7 @@ fn main() {
 struct GlobalStack<T>(Arc<Mutex<Vec<T>>>);
 
 impl<T> GlobalStack<T> {
-    pub fn add(&self, value: T) {
+    pub fn push(&self, value: T) {
         let mut vector = self.0.lock().unwrap();
         vector.push(value);
     }
@@ -16,5 +16,9 @@ impl<T> GlobalStack<T> {
     pub fn pop(&self) -> Option<T> {
         let mut vector = self.0.lock().unwrap();
         vector.pop()
+    }
+
+    pub fn clone(&self) -> Self {
+        Self(Arc::clone(&self.0))
     }
 }
