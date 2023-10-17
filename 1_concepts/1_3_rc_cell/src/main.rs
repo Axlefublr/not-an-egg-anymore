@@ -26,8 +26,10 @@ impl<T> GlobalStack<T> {
     //     let vector = self.0.lock().unwrap();
     //     vector.get(vector.len() - 1)
     // }
+}
 
-    pub fn clone(&self) -> Self {
+impl<T> Clone for GlobalStack<T> {
+    fn clone(&self) -> Self {
         Self(Arc::clone(&self.0))
     }
 }
