@@ -22,11 +22,10 @@ impl<T> GlobalStack<T> {
         vector.pop_back()
     }
 
-    pub fn peek(&self) -> Option<&T> {
-        let vector = self.0.lock().unwrap();
-        // Это конечно же не работает
-        vector.get(vector.len())
-    }
+    // pub fn peek(&self) -> Option<&T> {
+    //     let vector = self.0.lock().unwrap();
+    //     vector.get(vector.len() - 1)
+    // }
 
     pub fn clone(&self) -> Self {
         Self(Arc::clone(&self.0))
