@@ -21,11 +21,6 @@ impl<T> GlobalStack<T> {
         let mut vector = self.0.lock().unwrap();
         vector.pop_back()
     }
-
-    // pub fn peek(&self) -> Option<&T> {
-    //     let vector = self.0.lock().unwrap();
-    //     vector.get(vector.len() - 1)
-    // }
 }
 
 impl<T> Clone for GlobalStack<T> {
