@@ -7,12 +7,17 @@ const ENV_CONF: &str = "APP_CONF";
 
 fn main() {
     let conf: Cow<'_, str> = {
-        match Args::parse().conf {
-            Some(flag) if !flag.is_empty() => Cow::Owned(flag),
-            _ => match env::var(ENV_CONF) {
+        if let Some(flag) = Args::parse().conf {
+            if flag.is_empty() {
+                panic!("--conf shouldn't be an empty string! Obviously! Come on!")
+            } else {
+                Cow::Owned(flag)
+            }
+        } else {
+            match env::var(ENV_CONF) {
                 Ok(env_conf) if !env_conf.is_empty() => Cow::Owned(env_conf),
                 _ => Cow::Borrowed(DEFAULT_PATH),
-            },
+            }
         }
     };
     println!("{conf}");
